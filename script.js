@@ -15,3 +15,11 @@ figures.forEach(figure => figure.addEventListener('click', function(e) {
         currentNumber.textContent = firstNumber
     }
 }))
+
+const point = document.querySelector('.point')
+point.addEventListener('click', function(e) {
+    if (!firstNumber.includes('.')) {
+        currentNumber.textContent += '.'
+        firstNumber = currentNumber.textContent
+    }
+})
