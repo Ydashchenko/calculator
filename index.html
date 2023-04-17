@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator</title>
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 </head>
 <body>
     <header></header>
@@ -15,31 +15,31 @@
         <div id="container">
             <div id="face">
                 <div id="full-expression"></div>
-                <div id="current-number">0</div>
+                <div id="current-number"></div>
             </div>
             <div id="buttons">
                 <button id="clear">CLEAR</button>
                 <button id="delete">DELETE</button>
 
-                <button class="opt-btn">+</button>
-                <button class="figure">7</button>
-                <button class="figure">8</button>
-                <button class="figure">9</button>
+                <button class="opt-btn btn">+</button>
+                <button class="figure btn">7</button>
+                <button class="figure btn">8</button>
+                <button class="figure btn">9</button>
 
-                <button class="opt-btn">-</button>
-                <button class="figure">4</button>
-                <button class="figure">5</button>
-                <button class="figure">6</button>
+                <button class="opt-btn btn">-</button>
+                <button class="figure btn">4</button>
+                <button class="figure btn">5</button>
+                <button class="figure btn">6</button>
 
-                <button class="opt-btn">×</button>
-                <button class="figure">1</button>
-                <button class="figure">2</button>
-                <button class="figure">3</button>
+                <button class="opt-btn btn">×</button>
+                <button class="figure btn">1</button>
+                <button class="figure btn">2</button>
+                <button class="figure btn">3</button>
 
-                <button class="opt-btn">÷</button>
-                <button class="figure">.</button>
-                <button class="figure">0</button>
-                <button id="equal">=</button>
+                <button class="opt-btn btn">÷</button>
+                <button class="point">.</button>
+                <button class="figure btn">0</button>
+                <button id="equal" class="btn">=</button>
             </div>
         </div>
     </main>
