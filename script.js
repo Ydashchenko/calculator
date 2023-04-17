@@ -1,5 +1,5 @@
 let firstNumber = '0'
-let secondNumber = 0
+let secondNumber = null
 let operation = ''
 
 let currentNumber = document.getElementById('current-number')
@@ -23,3 +23,14 @@ point.addEventListener('click', function(e) {
         firstNumber = currentNumber.textContent
     }
 })
+
+const expression = document.getElementById('full-expression')
+let operations = document.querySelectorAll('.opt-btn')
+operations.forEach(operation => operation.addEventListener('click', function(e) {
+    if (secondNumber == null) {
+        expression.textContent = currentNumber.textContent + operation.textContent
+        firstNumber = currentNumber.textContent
+    } //else {
+        //let counting = 
+    //}
+}))
