@@ -1,6 +1,6 @@
 let firstNumber = ''
 let secondNumber = ''
-let operation = ''
+let  = ''
 
 let currentNumber = document.getElementById('current-number')
 currentNumber.textContent = '0'
@@ -36,11 +36,27 @@ point.addEventListener('click', function(e) {
 
 const expression = document.getElementById('full-expression')
 let operations = document.querySelectorAll('.opt-btn')
-operations.forEach(operation => operation.addEventListener('click', function(e) {
+operations.forEach(operationBtn => operation.addEventListener('click', function(e) {
+    operation = operationBtn.textContent
     if (secondNumber == '') {
-        expression.textContent = currentNumber.textContent + operation.textContent
+        expression.textContent = currentNumber.textContent + operationBtn.textContent
         firstNumber = currentNumber.textContent
     } //else {
         //let counting = 
     //}
 }))
+
+console.log(expression.textContent + currentNumber.textContent)
+
+function operate() {
+    switch (operation) {
+        case '+':
+            parseFloat(firstNumber) + parseFloat(secondNumber)
+        case '-':
+            parseFloat(firstNumber) - parseFloat(secondNumber)
+        case '×':
+            parseFloat(firstNumber) * parseFloat(secondNumber)
+        case '÷':
+            parseFloat(firstNumber) / parseFloat(secondNumber)
+    }       
+}
