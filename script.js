@@ -65,16 +65,16 @@ equals.addEventListener('click', function(e) {
 function operate() {
     switch (operation) {
         case '+':
-            firstNumber = parseFloat(firstNumber) + parseFloat(secondNumber)
+            firstNumber = (parseFloat(firstNumber) + parseFloat(secondNumber)).toFixed(4)
             break;
         case '-':
-            firstNumber = parseFloat(firstNumber) - parseFloat(secondNumber)
+            firstNumber = (parseFloat(firstNumber) - parseFloat(secondNumber)).toFixed(4)
             break;
         case '×':
-            firstNumber = parseFloat(firstNumber) * parseFloat(secondNumber)
+            firstNumber = (parseFloat(firstNumber) * parseFloat(secondNumber)).toFixed(4)
             break;
         case '÷':
-            firstNumber = parseFloat(firstNumber) / parseFloat(secondNumber)
+            firstNumber = (parseFloat(firstNumber) / parseFloat(secondNumber)).toFixed(4)
             break;
     }       
 }
