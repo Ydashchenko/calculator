@@ -1,6 +1,7 @@
 let firstNumber = ''
 let secondNumber = ''
-let  = ''
+let operation = ''
+let snowBall = ''
 
 let currentNumber = document.getElementById('current-number')
 currentNumber.textContent = '0'
@@ -34,9 +35,9 @@ point.addEventListener('click', function(e) {
     }
 })
 
-const expression = document.getElementById('full-expression')
+let expression = document.getElementById('full-expression')
 let operations = document.querySelectorAll('.opt-btn')
-operations.forEach(operationBtn => operation.addEventListener('click', function(e) {
+operations.forEach(operationBtn => operationBtn.addEventListener('click', function(e) {
     operation = operationBtn.textContent
     if (secondNumber == '') {
         expression.textContent = currentNumber.textContent + operationBtn.textContent
@@ -46,17 +47,29 @@ operations.forEach(operationBtn => operation.addEventListener('click', function(
     //}
 }))
 
-console.log(expression.textContent + currentNumber.textContent)
+const equals = document.getElementById('equals')
+equals.addEventListener('click', function(e) {
+    operate()
+    console.log(snowBall)
+    expression.textContent += secondNumber
+    expression.textContent += '='
+    currentNumber.textContent = snowBall
+
+})
 
 function operate() {
     switch (operation) {
         case '+':
-            parseFloat(firstNumber) + parseFloat(secondNumber)
+            snowBall = parseFloat(firstNumber) + parseFloat(secondNumber)
+            break;
         case '-':
-            parseFloat(firstNumber) - parseFloat(secondNumber)
+            snowBall = parseFloat(firstNumber) - parseFloat(secondNumber)
+            break;
         case '×':
-            parseFloat(firstNumber) * parseFloat(secondNumber)
+            snowBall = parseFloat(firstNumber) * parseFloat(secondNumber)
+            break;
         case '÷':
-            parseFloat(firstNumber) / parseFloat(secondNumber)
+            snowBall = parseFloat(firstNumber) / parseFloat(secondNumber)
+            break;
     }       
 }
