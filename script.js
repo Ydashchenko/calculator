@@ -1,7 +1,6 @@
 let firstNumber = ''
 let secondNumber = ''
 let operation = ''
-let snowBall = ''
 
 let currentNumber = document.getElementById('current-number')
 currentNumber.textContent = '0'
@@ -38,38 +37,44 @@ point.addEventListener('click', function(e) {
 let expression = document.getElementById('full-expression')
 let operations = document.querySelectorAll('.opt-btn')
 operations.forEach(operationBtn => operationBtn.addEventListener('click', function(e) {
-    operation = operationBtn.textContent
-    if (secondNumber == '') {
+    if (secondNumber === '') {
+        operation = operationBtn.textContent
         expression.textContent = currentNumber.textContent + operationBtn.textContent
         firstNumber = currentNumber.textContent
-    } //else {
-        //let counting = 
-    //}
+        secondNumber = ''
+    } else {
+        operate()
+        operation = operationBtn.textContent
+        currentNumber.textContent = firstNumber
+        expression.textContent = firstNumber + operation
+        secondNumber = ''
+
+    }
 }))
 
 const equals = document.getElementById('equals')
 equals.addEventListener('click', function(e) {
     operate()
-    console.log(snowBall)
     expression.textContent += secondNumber
     expression.textContent += '='
-    currentNumber.textContent = snowBall
+    currentNumber.textContent = firstNumber
+    secondNumber = ''
 
 })
 
 function operate() {
     switch (operation) {
         case '+':
-            snowBall = parseFloat(firstNumber) + parseFloat(secondNumber)
+            firstNumber = parseFloat(firstNumber) + parseFloat(secondNumber)
             break;
         case '-':
-            snowBall = parseFloat(firstNumber) - parseFloat(secondNumber)
+            firstNumber = parseFloat(firstNumber) - parseFloat(secondNumber)
             break;
         case '×':
-            snowBall = parseFloat(firstNumber) * parseFloat(secondNumber)
+            firstNumber = parseFloat(firstNumber) * parseFloat(secondNumber)
             break;
         case '÷':
-            snowBall = parseFloat(firstNumber) / parseFloat(secondNumber)
+            firstNumber = parseFloat(firstNumber) / parseFloat(secondNumber)
             break;
     }       
 }
