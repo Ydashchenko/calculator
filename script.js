@@ -64,7 +64,7 @@ operations.forEach(operationBtn => operationBtn.addEventListener('click', functi
         operation = operationBtn.textContent
         expression.textContent = currentNumber.textContent + operationBtn.textContent
         firstNumber = currentNumber.textContent
-        //secondNumber = ''
+        secondNumber = ''
     } else {
         operate()
         operation = operationBtn.textContent
@@ -78,9 +78,9 @@ operations.forEach(operationBtn => operationBtn.addEventListener('click', functi
 const equals = document.getElementById('equals')
 equals.addEventListener('click', function(e) {
     if (secondNumber != '' && !expression.textContent.includes('=')) {
-        operate()
         expression.textContent += secondNumber
         expression.textContent += '='
+        operate()
         currentNumber.textContent = firstNumber
         secondNumber = ''
     }    
@@ -100,8 +100,8 @@ function operate() {
             break;
         case '÷':
             if (secondNumber == 0) {
-                clearFunc()
                 alert("You can't divide by ZERO!")
+                window.location.reload()
             } else {
                 firstNumber = (parseFloat(firstNumber) / parseFloat(secondNumber)).toFixed(2)
             }
