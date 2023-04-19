@@ -48,7 +48,7 @@ operations.forEach(operationBtn => operationBtn.addEventListener('click', functi
         currentNumber.textContent = firstNumber
         expression.textContent = firstNumber + operation
         secondNumber = ''
-
+        
     }
 }))
 
@@ -65,16 +65,20 @@ equals.addEventListener('click', function(e) {
 function operate() {
     switch (operation) {
         case '+':
-            firstNumber = (parseFloat(firstNumber) + parseFloat(secondNumber)).toFixed(4)
+            firstNumber = (parseFloat(firstNumber) + parseFloat(secondNumber)).toFixed(16)
+            firstNumber = firstNumber.slice(0, -14)
             break;
         case '-':
-            firstNumber = (parseFloat(firstNumber) - parseFloat(secondNumber)).toFixed(4)
+            firstNumber = (parseFloat(firstNumber) - parseFloat(secondNumber)).toFixed(16)
+            firstNumber = firstNumber.slice(0, -14)
             break;
         case '×':
-            firstNumber = (parseFloat(firstNumber) * parseFloat(secondNumber)).toFixed(4)
+            firstNumber = (parseFloat(firstNumber) * parseFloat(secondNumber)).toFixed(16)
+            firstNumber = firstNumber.slice(0, -14)
             break;
         case '÷':
-            firstNumber = (parseFloat(firstNumber) / parseFloat(secondNumber)).toFixed(4)
+            firstNumber = (parseFloat(firstNumber) / parseFloat(secondNumber)).toFixed(16)
+            firstNumber = firstNumber.slice(0, -14)
             break;
     }       
 }
