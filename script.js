@@ -9,12 +9,13 @@ clearBtn.addEventListener('click', clearFunc)
 
 let deleteBtn = document.getElementById('delete')
 deleteBtn.addEventListener('click', function(e) {
-    if (firstNumber !== '' && expression.textContent === '') {
+    //if (firstNumber !== '' && expression.textContent === '') {    
+    if (firstNumber != '' && secondNumber != '') {
+        secondNumber = secondNumber.substring(0, secondNumber.length - 1)
+        currentNumber.textContent = secondNumber
+    } else {
         firstNumber = firstNumber.substring(0, firstNumber.length - 1)
         currentNumber.textContent = firstNumber
-    } else {
-        secondNumber = secondNumber.substring(0,secondNumber.length - 1)
-        currentNumber.textContent = secondNumber
     }
 })
 
