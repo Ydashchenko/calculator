@@ -3,7 +3,18 @@ let secondNumber = ''
 let operation = ''
 
 let currentNumber = document.getElementById('current-number')
-currentNumber.textContent = '0'
+
+let clear = document.getElementById('clear')
+clear.addEventListener('click', clearFunc)
+
+function clearFunc () {
+    firstNumber = ''
+    secondNumber = ''
+    operation = ''
+    currentNumber.textContent = '0'
+    expression.textContent = ''
+}
+
 
 let figures = document.querySelectorAll('.figure')
 figures.forEach(figure => figure.addEventListener('click', function(e) {
@@ -85,3 +96,5 @@ function operate() {
         }
     }
 }
+
+clearFunc()
