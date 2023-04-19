@@ -54,31 +54,34 @@ operations.forEach(operationBtn => operationBtn.addEventListener('click', functi
 
 const equals = document.getElementById('equals')
 equals.addEventListener('click', function(e) {
-    operate()
-    expression.textContent += secondNumber
-    expression.textContent += '='
-    currentNumber.textContent = firstNumber
-    secondNumber = ''
-
+    if (secondNumber != '') {
+        operate()
+        expression.textContent += secondNumber
+        expression.textContent += '='
+        currentNumber.textContent = firstNumber
+        secondNumber = ''
+    }    
 })
 
 function operate() {
     switch (operation) {
         case '+':
-            firstNumber = (parseFloat(firstNumber) + parseFloat(secondNumber)).toFixed(16)
-            firstNumber = firstNumber.slice(0, -14)
+            firstNumber = (parseFloat(firstNumber) + parseFloat(secondNumber)).toFixed(2)
             break;
         case '-':
-            firstNumber = (parseFloat(firstNumber) - parseFloat(secondNumber)).toFixed(16)
-            firstNumber = firstNumber.slice(0, -14)
+            firstNumber = (parseFloat(firstNumber) - parseFloat(secondNumber)).toFixed(2)
             break;
         case '×':
-            firstNumber = (parseFloat(firstNumber) * parseFloat(secondNumber)).toFixed(16)
-            firstNumber = firstNumber.slice(0, -14)
+            firstNumber = (parseFloat(firstNumber) * parseFloat(secondNumber)).toFixed(2)
             break;
         case '÷':
-            firstNumber = (parseFloat(firstNumber) / parseFloat(secondNumber)).toFixed(16)
-            firstNumber = firstNumber.slice(0, -14)
+            firstNumber = (parseFloat(firstNumber) / parseFloat(secondNumber)).toFixed(2)
             break;
-    }       
+    }
+    if (firstNumber[firstNumber.length - 1] == 0) {
+        firstNumber = firstNumber.substring(0, firstNumber.length - 1)
+        if (firstNumber[firstNumber.length - 1] == 0) {
+            firstNumber = firstNumber.substring(0, firstNumber.length - 2)
+        }
+    }
 }
