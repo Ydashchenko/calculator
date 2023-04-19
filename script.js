@@ -64,7 +64,7 @@ operations.forEach(operationBtn => operationBtn.addEventListener('click', functi
         operation = operationBtn.textContent
         expression.textContent = currentNumber.textContent + operationBtn.textContent
         firstNumber = currentNumber.textContent
-        secondNumber = ''
+        //secondNumber = ''
     } else {
         operate()
         operation = operationBtn.textContent
@@ -77,7 +77,7 @@ operations.forEach(operationBtn => operationBtn.addEventListener('click', functi
 
 const equals = document.getElementById('equals')
 equals.addEventListener('click', function(e) {
-    if (secondNumber != '') {
+    if (secondNumber != '' && !expression.textContent.includes('=')) {
         operate()
         expression.textContent += secondNumber
         expression.textContent += '='
@@ -131,7 +131,6 @@ document.addEventListener('keydown', (event) => {
 	if (event.key === '.') {
 		point.click()
 	}
-    console.log(event)
 })
 
 clearFunc()
