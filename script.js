@@ -4,8 +4,19 @@ let operation = ''
 
 let currentNumber = document.getElementById('current-number')
 
-let clear = document.getElementById('clear')
-clear.addEventListener('click', clearFunc)
+let clearBtn = document.getElementById('clear')
+clearBtn.addEventListener('click', clearFunc)
+
+let deleteBtn = document.getElementById('delete')
+deleteBtn.addEventListener('click', function(e) {
+    if (firstNumber !== '' && expression.textContent === '') {
+        firstNumber = firstNumber.substring(0, firstNumber.length - 1)
+        currentNumber.textContent = firstNumber
+    } else {
+        secondNumber = secondNumber.substring(0,secondNumber.length - 1)
+        currentNumber.textContent = secondNumber
+    }
+})
 
 function clearFunc () {
     firstNumber = ''
@@ -73,6 +84,7 @@ equals.addEventListener('click', function(e) {
         secondNumber = ''
     }    
 })
+
 
 function operate() {
     switch (operation) {
