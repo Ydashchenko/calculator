@@ -109,4 +109,23 @@ function operate() {
     }
 }
 
+document.addEventListener('keydown', (event) => {
+    if(!isNaN(event.key) && event.key !== ' '){
+		document.getElementById(`figure-${event.key}`).click()
+	}
+	if (['/', '+', '-', '*'].includes(event.key)) {
+        document.getElementById(`${event.key}`).click()
+	}
+	if (event.key === 'Backspace' || event.key ==='c' || event.key === 'C') {
+		deleteBtn.click()	
+	}
+	if (event.key === '=' || event.key === 'Enter') {
+		document.getElementById('equals').click()
+	}
+	if (event.key === '.') {
+		point.click()
+	}
+    console.log(event)
+})
+
 clearFunc()
