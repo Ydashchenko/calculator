@@ -99,7 +99,12 @@ function operate() {
             firstNumber = (parseFloat(firstNumber) * parseFloat(secondNumber)).toFixed(2)
             break;
         case '÷':
-            firstNumber = (parseFloat(firstNumber) / parseFloat(secondNumber)).toFixed(2)
+            if (secondNumber == 0) {
+                clearFunc()
+                alert("You can't divide by ZERO!")
+            } else {
+                firstNumber = (parseFloat(firstNumber) / parseFloat(secondNumber)).toFixed(2)
+            }
             break;
     }
     if (firstNumber[firstNumber.length - 1] == 0) {
