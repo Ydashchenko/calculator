@@ -14,6 +14,7 @@ clearBtn.addEventListener('click', clearFunc)
 let deleteBtn = document.getElementById('delete')
 deleteBtn.addEventListener('click', function(e) {
   currentNumber.textContent = currentNumber.textContent.toString().slice(0, -1)
+  answer = ''
 })
 
 function clearFunc () {
@@ -28,7 +29,7 @@ function clearFunc () {
 let figures = document.querySelectorAll('.figure')
 figures.forEach(figure => figure.addEventListener('click', function(e) {
 
-  if (currentNumber.textContent === '0') {
+  if (currentNumber.textContent === '0' || currentNumber.textContent == answer) {
     currentNumber.textContent = figure.textContent
 
   } else if (currentNumber.textContent === '-0') {
@@ -49,6 +50,7 @@ operations.forEach(operationBtn => operationBtn.addEventListener('click', functi
   } else if (currentNumber.textContent != '' && currentNumber.textContent != '-' && operatorPressed === false) {
     expression.textContent = `${Number(currentNumber.textContent)}` + operationBtn.textContent
     firstNumber = currentNumber.textContent
+    answer = currentNumber.textContent
     operation = operationBtn.textContent
     operatorPressed = true
 
