@@ -47,8 +47,15 @@ operations.forEach(operationBtn => operationBtn.addEventListener('click', functi
     currentNumber.textContent += operationBtn.textContent
 
   } else if (currentNumber.textContent != '' && currentNumber.textContent != '-' && operatorPressed === false) {
-    expression.textContent = currentNumber.textContent + operationBtn.textContent
+    expression.textContent = `${Number(currentNumber.textContent)}` + operationBtn.textContent
     firstNumber = currentNumber.textContent
+    operation = operationBtn.textContent
+    operatorPressed = true
+
+  } else if (['+' ,'-' ,'×', '÷'].includes(expression.textContent.charAt(expression.textContent.length - 1)) 
+  && currentNumber.textContent === '') {
+    expression.textContent = expression.textContent.toString().slice(0, -1)
+    expression.textContent += operationBtn.textContent
     operation = operationBtn.textContent
     operatorPressed = true
 
@@ -88,16 +95,20 @@ function operate() {
   secondNumber = Number(secondNumber)
   switch (operation) {
     case '+':
-      answer = Math.floor((firstNumber + secondNumber) * 100) / 100
+      answer = firstNumber + secondNumber
+      answer = Math.round(answer * 1000) / 1000
       break
     case '-':
-      answer = Math.floor((firstNumber - secondNumber) * 100) / 100
+      answer = firstNumber - secondNumber
+      answer = Math.round(answer * 1000) / 1000
       break
     case '×':
-      answer = Math.floor((firstNumber * secondNumber) * 100) / 100
+      answer = firstNumber * secondNumber
+      answer = Math.round(answer * 1000) / 1000
       break
     case '÷':
-      answer = Math.floor((firstNumber / secondNumber) * 100) / 100
+      answer = firstNumber / secondNumber
+      answer = Math.round(answer * 1000) / 1000
       break
   }
 }
