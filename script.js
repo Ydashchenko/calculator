@@ -63,7 +63,15 @@ point.addEventListener('click', function(e) {
 
 const equals = document.getElementById('equals')
 equals.addEventListener('click', function(e) {
-
+  if (expression.textContent != '' && currentNumber.textContent != '-'
+  && currentNumber.textContent != '' && !expression.textContent.includes('=')) {
+    secondNumber = currentNumber.textContent
+    operate()
+    expression.textContent += secondNumber + '='
+    firstNumber = answer
+    currentNumber.textContent = answer
+    operatorPressed = false
+  }
 })
 
 
