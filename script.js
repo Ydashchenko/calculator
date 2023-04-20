@@ -27,10 +27,13 @@ function clearFunc () {
 
 let figures = document.querySelectorAll('.figure')
 figures.forEach(figure => figure.addEventListener('click', function(e) {
+
   if (currentNumber.textContent === '0') {
     currentNumber.textContent = figure.textContent
+
   } else if (currentNumber.textContent === '-0') {
     currentNumber.textContent = '-' + figure.textContent
+
   } else {
     currentNumber.textContent += figure.textContent
   }
@@ -38,14 +41,17 @@ figures.forEach(figure => figure.addEventListener('click', function(e) {
 
 let expression = document.getElementById('full-expression')
 let operations = document.querySelectorAll('.opt-btn')
+
 operations.forEach(operationBtn => operationBtn.addEventListener('click', function(e) {
   if (operationBtn.textContent === '-' && currentNumber.textContent === '') {
     currentNumber.textContent += operationBtn.textContent
+
   } else if (currentNumber.textContent != '' && currentNumber.textContent != '-' && operatorPressed === false) {
     expression.textContent = currentNumber.textContent + operationBtn.textContent
     firstNumber = currentNumber.textContent
     operation = operationBtn.textContent
     operatorPressed = true
+
   } else if (firstNumber != '' && currentNumber.textContent != '' && currentNumber.textContent != '-' && operatorPressed === true) {
     secondNumber = currentNumber.textContent
     operate()
@@ -58,7 +64,9 @@ operations.forEach(operationBtn => operationBtn.addEventListener('click', functi
 
 const point = document.querySelector('.point')
 point.addEventListener('click', function(e) {
-
+  if (!currentNumber.textContent.includes('.') && currentNumber.textContent != '') {
+    currentNumber.textContent += '.'
+  }
 })
 
 const equals = document.getElementById('equals')
@@ -80,22 +88,22 @@ function operate() {
   secondNumber = Number(secondNumber)
   switch (operation) {
     case '+':
-      answer = firstNumber + secondNumber
+      answer = Math.floor((firstNumber + secondNumber) * 100) / 100
       break
     case '-':
-      answer = firstNumber - secondNumber
+      answer = Math.floor((firstNumber - secondNumber) * 100) / 100
       break
     case '×':
-      answer = firstNumber * secondNumber
+      answer = Math.floor((firstNumber * secondNumber) * 100) / 100
       break
     case '÷':
-      answer = firstNumber / secondNumber
+      answer = Math.floor((firstNumber / secondNumber) * 100) / 100
       break
   }
 }
 
 document.addEventListener('keydown', (event) => {
-    if(!isNaN(event.key) && event.key !== ' '){
+  if(!isNaN(event.key) && event.key !== ' '){
 		document.getElementById(`figure-${event.key}`).click()
 	}
 	if (['/', '+', '-', '*'].includes(event.key)) {
