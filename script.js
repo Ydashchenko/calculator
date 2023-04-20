@@ -1,9 +1,8 @@
 let firstNumber = ''
 let secondNumber = ''
 let operation = ''
-let equalPressed = false
 let operatorPressed = false
-let temp = ''
+let divisionByZero = false
 let answer = ''
 
 let currentNumber = document.getElementById('current-number')
@@ -28,7 +27,7 @@ function clearFunc () {
 
 let figures = document.querySelectorAll('.figure')
 figures.forEach(figure => figure.addEventListener('click', function(e) {
-
+  divisionByZero = false
   if (currentNumber.textContent === '0' || currentNumber.textContent == answer) {
     currentNumber.textContent = figure.textContent
 
@@ -64,6 +63,9 @@ operations.forEach(operationBtn => operationBtn.addEventListener('click', functi
   } else if (firstNumber != '' && currentNumber.textContent != '' && currentNumber.textContent != '-' && operatorPressed === true) {
     secondNumber = currentNumber.textContent
     operate()
+    if (divisionByZero) {
+      return
+    }
     operation = operationBtn.textContent
     expression.textContent = answer + operationBtn.textContent
     firstNumber = answer
@@ -84,10 +86,14 @@ equals.addEventListener('click', function(e) {
   && currentNumber.textContent != '' && !expression.textContent.includes('=')) {
     secondNumber = currentNumber.textContent
     operate()
-    expression.textContent += secondNumber + '='
-    firstNumber = answer
-    currentNumber.textContent = answer
-    operatorPressed = false
+    if (divisionByZero) { 
+      return
+    } else {
+      expression.textContent += secondNumber + '='
+      firstNumber = answer
+      currentNumber.textContent = answer
+      operatorPressed = false
+    }
   }
 })
 
@@ -109,9 +115,17 @@ function operate() {
       answer = Math.round(answer * 1000) / 1000
       break
     case '÷':
-      answer = firstNumber / secondNumber
-      answer = Math.round(answer * 1000) / 1000
-      break
+      if (secondNumber == 0) {
+        alert("You can't divide by zero!")
+        divisionByZero = true
+        answer = firstNumber
+        currentNumber.textContent = ''
+        return
+      } else {
+        answer = firstNumber / secondNumber
+        answer = Math.round(answer * 1000) / 1000
+        break
+      }
   }
 }
 
