@@ -1,6 +1,7 @@
 let firstNumber = ''
 let secondNumber = ''
 let operation = ''
+let equalPressed = false
 
 let currentNumber = document.getElementById('current-number')
 
@@ -9,14 +10,7 @@ clearBtn.addEventListener('click', clearFunc)
 
 let deleteBtn = document.getElementById('delete')
 deleteBtn.addEventListener('click', function(e) {
-    //if (firstNumber !== '' && expression.textContent === '') {    
-    if (firstNumber != '' && secondNumber != '') {
-        secondNumber = secondNumber.substring(0, secondNumber.length - 1)
-        currentNumber.textContent = secondNumber
-    } else {
-        firstNumber = firstNumber.substring(0, firstNumber.length - 1)
-        currentNumber.textContent = firstNumber
-    }
+  currentNumber.textContent = currentNumber.textContent.toString().slice(0, -1)
 })
 
 function clearFunc () {
@@ -30,16 +24,21 @@ function clearFunc () {
 
 let figures = document.querySelectorAll('.figure')
 figures.forEach(figure => figure.addEventListener('click', function(e) {
-    if (firstNumber === '') {
-        firstNumber = figure.textContent
-        currentNumber.textContent = figure.textContent
-    } else if (firstNumber !== '' && expression.textContent === '') {
-        firstNumber = firstNumber + figure.textContent
-        currentNumber.textContent = firstNumber
-    } else {
-        secondNumber = secondNumber + figure.textContent
-        currentNumber.textContent = secondNumber
-    }
+  if (currentNumber.textContent === '0') {
+    currentNumber.textContent = figure.textContent
+  } else if (currentNumber.textContent === '-0') {
+    currentNumber.textContent = '-' + figure.textContent
+  } else {
+    currentNumber.textContent += figure.textContent
+  }
+}))
+
+let expression = document.getElementById('full-expression')
+let operations = document.querySelectorAll('.opt-btn')
+operations.forEach(operationBtn => operationBtn.addEventListener('click', function(e) {
+  if (operationBtn.textContent === '-' && currentNumber.textContent === '') {
+    currentNumber.textContent += operationBtn.textContent
+  }
 }))
 
 const point = document.querySelector('.point')
@@ -57,62 +56,14 @@ point.addEventListener('click', function(e) {
     }
 })
 
-let expression = document.getElementById('full-expression')
-let operations = document.querySelectorAll('.opt-btn')
-operations.forEach(operationBtn => operationBtn.addEventListener('click', function(e) {
-    if (secondNumber === '') {
-        operation = operationBtn.textContent
-        expression.textContent = currentNumber.textContent + operationBtn.textContent
-        firstNumber = currentNumber.textContent
-        secondNumber = ''
-    } else {
-        operate()
-        operation = operationBtn.textContent
-        currentNumber.textContent = firstNumber
-        expression.textContent = firstNumber + operation
-        secondNumber = ''
-        
-    }
-}))
-
 const equals = document.getElementById('equals')
 equals.addEventListener('click', function(e) {
-    if (secondNumber != '' && !expression.textContent.includes('=')) {
-        expression.textContent += secondNumber
-        expression.textContent += '='
-        operate()
-        currentNumber.textContent = firstNumber
-        secondNumber = ''
-    }    
+
 })
 
 
 function operate() {
-    switch (operation) {
-        case '+':
-            firstNumber = (parseFloat(firstNumber) + parseFloat(secondNumber)).toFixed(2)
-            break;
-        case '-':
-            firstNumber = (parseFloat(firstNumber) - parseFloat(secondNumber)).toFixed(2)
-            break;
-        case '×':
-            firstNumber = (parseFloat(firstNumber) * parseFloat(secondNumber)).toFixed(2)
-            break;
-        case '÷':
-            if (secondNumber == 0) {
-                alert("You can't divide by ZERO!")
-                window.location.reload()
-            } else {
-                firstNumber = (parseFloat(firstNumber) / parseFloat(secondNumber)).toFixed(2)
-            }
-            break;
-    }
-    if (firstNumber[firstNumber.length - 1] == 0) {
-        firstNumber = firstNumber.substring(0, firstNumber.length - 1)
-        if (firstNumber[firstNumber.length - 1] == 0) {
-            firstNumber = firstNumber.substring(0, firstNumber.length - 2)
-        }
-    }
+
 }
 
 document.addEventListener('keydown', (event) => {

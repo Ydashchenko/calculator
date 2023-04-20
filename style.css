@@ -12,7 +12,7 @@ body {
     border: solid black 2px;
     border-radius: 20px;
     width: 400px;
-    height: 600px;
+    min-height: 600px;
     background-color: grey;
     box-shadow: 0 8px 16px 0 rgba(13, 13, 13, 0.511), 0 12px 40px 0 rgba(54, 54, 54, 0.539);
 }
@@ -20,7 +20,7 @@ body {
 #face {
     border: solid black 2px;
     border-radius: 10px;
-    height: 150px;
+    min-height: 150px;
     margin: 20px;
     background-color: rgb(255, 255, 255);
     display: flex;
@@ -28,10 +28,14 @@ body {
     flex-direction: column;
     align-items: end;
     padding-right: 20px;
+    word-wrap: break-word;
+    max-width: 360px;
 }
 
 #current-number {
     font-size: 50px;
+    word-wrap: break-word;
+    max-width: 300px;
 }
 
 #full-expression {
