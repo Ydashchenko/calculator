@@ -2,6 +2,9 @@ let firstNumber = ''
 let secondNumber = ''
 let operation = ''
 let equalPressed = false
+let operatorPressed = false
+let temp = ''
+let answer = ''
 
 let currentNumber = document.getElementById('current-number')
 
@@ -38,22 +41,24 @@ let operations = document.querySelectorAll('.opt-btn')
 operations.forEach(operationBtn => operationBtn.addEventListener('click', function(e) {
   if (operationBtn.textContent === '-' && currentNumber.textContent === '') {
     currentNumber.textContent += operationBtn.textContent
+  } else if (currentNumber.textContent != '' && currentNumber.textContent != '-' && operatorPressed === false) {
+    expression.textContent = currentNumber.textContent + operationBtn.textContent
+    firstNumber = currentNumber.textContent
+    operation = operationBtn.textContent
+    operatorPressed = true
+  } else if (firstNumber != '' && currentNumber.textContent != '' && currentNumber.textContent != '-' && operatorPressed === true) {
+    secondNumber = currentNumber.textContent
+    operate()
+    operation = operationBtn.textContent
+    expression.textContent = answer + operationBtn.textContent
+    firstNumber = answer
+    currentNumber.textContent = answer
   }
 }))
 
 const point = document.querySelector('.point')
 point.addEventListener('click', function(e) {
-    if (expression.textContent === '') {
-        if (!currentNumber.textContent.includes('.')) {
-            currentNumber.textContent += '.'
-            firstNumber = currentNumber.textContent
-        }
-    } else {
-        if (!currentNumber.textContent.includes('.')) {
-            currentNumber.textContent += '.'
-            secondNumber = currentNumber.textContent
-        }
-    }
+
 })
 
 const equals = document.getElementById('equals')
@@ -63,7 +68,22 @@ equals.addEventListener('click', function(e) {
 
 
 function operate() {
-
+  firstNumber = Number(firstNumber)
+  secondNumber = Number(secondNumber)
+  switch (operation) {
+    case '+':
+      answer = firstNumber + secondNumber
+      break
+    case '-':
+      answer = firstNumber - secondNumber
+      break
+    case '×':
+      answer = firstNumber * secondNumber
+      break
+    case '÷':
+      answer = firstNumber / secondNumber
+      break
+  }
 }
 
 document.addEventListener('keydown', (event) => {
